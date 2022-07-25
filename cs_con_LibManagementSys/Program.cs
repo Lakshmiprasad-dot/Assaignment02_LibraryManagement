@@ -10,7 +10,7 @@ namespace cs_con_LibManagementSys
             {
                 Console.Clear();
                 Console.WriteLine("You are a Librarian");
-               // Librarian_Menu.Librarian__Option();
+                Librarian_Menu.Librarian__Option();
             }
             else if (For_Person_Identify == 2)
             {
