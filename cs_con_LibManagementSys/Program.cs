@@ -5,10 +5,10 @@ namespace cs_con_LibManagementSys
 {
     class Program
     {
-        static List<Book> bookList = new List<Book>();
-        static List<BorrowDetails> borrowList = new List<BorrowDetails>();
-        static Book book = new Book();
-        static BorrowDetails borrow = new BorrowDetails();
+        static List<Book_Details> bookList = new List<Book_Details>();
+        static List<Borrow_Details> borrowList = new List<Borrow_Details>();
+        static Book_Details book = new Book_Details();
+        static Borrow_Details borrow = new Borrow_Details();
 
         //Password verfication and Menu 
         static void Main(string[] args)
@@ -53,11 +53,11 @@ namespace cs_con_LibManagementSys
 
                     if (Borrow_Return == 1)
                     {
-                        Borrow();
+                        Borrow_Book();
                     }
                     else if (Borrow_Return == 2)
                     {
-                        ReturnBook();
+                        Return_Book();
                     }
                     else if (Borrow_Return == 3)
                     {
@@ -97,11 +97,11 @@ namespace cs_con_LibManagementSys
 
                     if (Add_Del_option == 1)
                     {
-                        AddBook();
+                        Add_Book();
                     }
                     else if (Add_Del_option == 2)
                     {
-                        RemoveBook();
+                        Delete_Book();
                     }
                     else if (Add_Del_option == 3)
                     {
@@ -123,9 +123,9 @@ namespace cs_con_LibManagementSys
             }
         }
 
-        public static void AddBook()
+        public static void Add_Book()
         {
-            Book book = new Book();
+            Book_Details book = new Book_Details();
             Console.WriteLine("Book Id:{0}", book.bookId = bookList.Count + 1);
             Console.Write("Book Name:");
             book.bookName = Console.ReadLine();
@@ -134,9 +134,9 @@ namespace cs_con_LibManagementSys
             bookList.Add(book);
         }
 
-        public static void RemoveBook()
+        public static void Delete_Book()
         {
-            Book book = new Book();
+            Book_Details book = new Book_Details();
             Console.Write("Enter Book id to be deleted : ");
 
             int Del = int.Parse(Console.ReadLine());
@@ -153,10 +153,10 @@ namespace cs_con_LibManagementSys
 
             bookList.Add(book);
         }
-        public static void Borrow()
+        public static void Borrow_Book()
         {
-            Book book = new Book();
-            BorrowDetails borrow = new BorrowDetails();
+            Book_Details book = new Book_Details();
+            Borrow_Details borrow = new Borrow_Details();
             Console.WriteLine("User id : {0}", (borrow.userId = borrowList.Count + 1));
             Console.Write("Name :");
 
@@ -171,7 +171,7 @@ namespace cs_con_LibManagementSys
 
             if (bookList.Exists(x => x.bookId == borrow.borrowBookId))
             {
-                foreach (Book searchId in bookList)
+                foreach (Book_Details searchId in bookList)
                 {
                     if (searchId.bookCount >= searchId.bookCount - borrow.borrowCount && searchId.bookCount - borrow.borrowCount >= 0)
                     {
@@ -194,9 +194,9 @@ namespace cs_con_LibManagementSys
             }
             borrowList.Add(borrow);
         }
-        public static void ReturnBook()
+        public static void Return_Book()
         {
-            Book book = new Book();
+            Book_Details book = new Book_Details();
             Console.WriteLine("Enter following details :");
 
             Console.Write("Book id : ");
@@ -207,7 +207,7 @@ namespace cs_con_LibManagementSys
 
             if (bookList.Exists(y => y.bookId == returnId))
             {
-                foreach (Book addReturnBookCount in bookList)
+                foreach (Book_Details addReturnBookCount in bookList)
                 {
                     if (addReturnBookCount.x >= returnCount + addReturnBookCount.bookCount)
                     {
@@ -230,14 +230,14 @@ namespace cs_con_LibManagementSys
             }
         }
     }
-    class Book
+    class Book_Details
     {
         public int bookId;
         public string bookName;
         public int bookCount;
         public int x;
     }
-    class BorrowDetails
+    class Borrow_Details
     {
         public int userId;
         public string userName;
