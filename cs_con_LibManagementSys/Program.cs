@@ -9,19 +9,16 @@ namespace cs_con_LibManagementSys
         static List<Borrow_Details> borrowList = new List<Borrow_Details>();
         static Book_Details book = new Book_Details();
         static Borrow_Details borrow = new Borrow_Details();
-
-        //Password verfication and Menu 
         static void Main(string[] args)
         {
-            Console.Write("**** Welcome to Library Management Sysytem ******** ");
+            Console.WriteLine("**** Welcome to Library Management Sysytem ******** ");
             Welcome();
         }
         public static void Welcome()
         {
-
             Console.WriteLine("\n **  Menu  **\n" +
                     "Enter : ( 1 )  Librarian\n" +
-                    "Enter : (2)  Borrower\n"+
+                    "Enter : (2)  Borrower\n" +
                     "Enter : ( 3 )  Exit\n\n");
             Console.Write("Choose your option from menu :");
 
@@ -29,10 +26,10 @@ namespace cs_con_LibManagementSys
             if (option_person == 1)
             {
                 Console.Clear();
-                Console.WriteLine("\nWelcome MRs / Miss Librarian\n" +
+                Console.WriteLine("\nWelcome Mrs / Ms Librarian\n" +
                   "Please choose your option : \n" +
                   "Enter : (1) Books\n" +
-                  "Enter : (2) NewsPapers\n\n");
+                  "Enter : (2) NewsPapers\n");
                 Console.Write("Choose your option :");
                 Book();
             }
@@ -42,7 +39,7 @@ namespace cs_con_LibManagementSys
                 bool close1 = true;
                 while (close1)
                 {
-                    Console.WriteLine("\nWelcome Mrs / Miss Borrower\n" +
+                    Console.WriteLine("\nWelcome Mrs / Ms Borrower\n" +
                     "Please choose your option :\n" +
                     "1)Borrow book\n" +
                     "2)Return book\n" +
@@ -53,11 +50,11 @@ namespace cs_con_LibManagementSys
 
                     if (Borrow_Return == 1)
                     {
-                        Borrow_Book();
+                        Borrow_Book_From_Library();
                     }
                     else if (Borrow_Return == 2)
                     {
-                        Return_Book();
+                        Return_Book_To_Library();
                     }
                     else if (Borrow_Return == 3)
                     {
@@ -71,10 +68,10 @@ namespace cs_con_LibManagementSys
                     }
                 }
             }
-            else if(option_person == 3)
+            else if (option_person == 3)
             {
-                Console.WriteLine("Thank you \n"+" Exited from the application ");
-                
+                Console.WriteLine("Thank you \n" + " ** Exited from the application **");
+
             }
         }
         public static void Book()
@@ -90,7 +87,9 @@ namespace cs_con_LibManagementSys
                     "Please choose your option\n" +
                     "1)Add book\n" +
                     "2)Delete book\n" +
-                    "3)Close\n");
+                    "3)Close\n" +
+                    "4)Find Book Availabilty\n");
+                    
                     Console.Write("Choose your option from menu :");
 
                     int Add_Del_option = int.Parse(Console.ReadLine());
@@ -108,7 +107,11 @@ namespace cs_con_LibManagementSys
                         Console.WriteLine("Thank you");
                         close = false;
                         Welcome();
-                       
+
+                    }
+                    else if(Add_Del_option == 4)
+                    {
+                        Find_Book_Availability();
                     }
                     else
                     {
@@ -118,11 +121,38 @@ namespace cs_con_LibManagementSys
 
                 else if (Books_Newspapers_option == 2)
                 {
-                    Console.WriteLine("News papers");
+                    Console.WriteLine("****  News papers Section  *****");
+                    Console.WriteLine("No NewsPapers are available to do Modifications");
                 }
             }
         }
+        public static void Find_Book_Availability()
+        {
+            Book_Details book = new Book_Details();
+            Console.Write("Search by BOOK id :");
+            int find = int.Parse(Console.ReadLine());
 
+            if (bookList.Exists(x => x.bookId == find))
+            {
+                foreach (Book_Details searchId in bookList)
+                {
+                    if (searchId.bookId == find)
+                    {
+                        Console.WriteLine("Book id :{0}\n" +
+                        "Book name :{1}\n" +
+                        "Book Count :{2}", searchId.bookId, searchId.bookName, searchId.bookCount);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Books are Not Available ..!");
+                    }
+                }
+            }
+            else
+            {
+                Console.WriteLine("Book id {0} not found", find);
+            }
+        }
         public static void Add_Book()
         {
             Book_Details book = new Book_Details();
@@ -130,10 +160,9 @@ namespace cs_con_LibManagementSys
             Console.Write("Book Name:");
             book.bookName = Console.ReadLine();
             Console.Write("Number of Books:");
-            book.x = book.bookCount = int.Parse(Console.ReadLine());
+            book.Ref_x = book.bookCount = int.Parse(Console.ReadLine());
             bookList.Add(book);
         }
-
         public static void Delete_Book()
         {
             Book_Details book = new Book_Details();
@@ -150,10 +179,9 @@ namespace cs_con_LibManagementSys
             {
                 Console.WriteLine("Invalid Book id");
             }
-
             bookList.Add(book);
         }
-        public static void Borrow_Book()
+        public static void Borrow_Book_From_Library()
         {
             Book_Details book = new Book_Details();
             Borrow_Details borrow = new Borrow_Details();
@@ -167,7 +195,7 @@ namespace cs_con_LibManagementSys
             Console.Write("Number of Books : ");
             borrow.borrowCount = int.Parse(Console.ReadLine());
             borrow.borrowDate = DateTime.Now;
-            Console.WriteLine("Date - {0} and Time - {1}", borrow.borrowDate.ToShortDateString(), borrow.borrowDate.ToShortTimeString());
+            Console.WriteLine("Date - {0} ", borrow.borrowDate.ToShortDateString());
 
             if (bookList.Exists(x => x.bookId == borrow.borrowBookId))
             {
@@ -194,7 +222,7 @@ namespace cs_con_LibManagementSys
             }
             borrowList.Add(borrow);
         }
-        public static void Return_Book()
+        public static void Return_Book_To_Library()
         {
             Book_Details book = new Book_Details();
             Console.WriteLine("Enter following details :");
@@ -209,7 +237,7 @@ namespace cs_con_LibManagementSys
             {
                 foreach (Book_Details addReturnBookCount in bookList)
                 {
-                    if (addReturnBookCount.x >= returnCount + addReturnBookCount.bookCount)
+                    if (addReturnBookCount.Ref_x >= returnCount + addReturnBookCount.bookCount)
                     {
                         if (addReturnBookCount.bookId == returnId)
                         {
@@ -235,7 +263,7 @@ namespace cs_con_LibManagementSys
         public int bookId;
         public string bookName;
         public int bookCount;
-        public int x;
+        public int Ref_x;
     }
     class Borrow_Details
     {
@@ -246,6 +274,7 @@ namespace cs_con_LibManagementSys
         public int borrowCount;
     }
 }
+
 
 
 
