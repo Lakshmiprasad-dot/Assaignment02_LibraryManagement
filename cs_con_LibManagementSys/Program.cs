@@ -6,7 +6,9 @@ namespace cs_con_LibManagementSys
     class Program
     {
         static List<Book_Details> bookList = new List<Book_Details>();
+        static List<News_Paper_Details> newspaperList = new List<News_Paper_Details>();
         static List<Borrow_Details> borrowList = new List<Borrow_Details>();
+        static News_Paper_Details paper = new News_Paper_Details();
         static Book_Details book = new Book_Details();
         static Borrow_Details borrow = new Borrow_Details();
         static void Main(string[] args)
@@ -77,8 +79,8 @@ namespace cs_con_LibManagementSys
         public static void Book()
         {
             int Books_Newspapers_option = int.Parse(Console.ReadLine());
-            bool close = true;
-            while (close)
+            bool run = true;
+            while (run)
             {
                 if (Books_Newspapers_option == 1)
                 {
@@ -89,42 +91,135 @@ namespace cs_con_LibManagementSys
                     "2)Delete book\n" +
                     "3)Close\n" +
                     "4)Find Book Availabilty\n");
-                    
+
                     Console.Write("Choose your option from menu :");
 
-                    int Add_Del_option = int.Parse(Console.ReadLine());
+                    int Add_Del_option_Book = int.Parse(Console.ReadLine());
 
-                    if (Add_Del_option == 1)
+                    if (Add_Del_option_Book == 1)
                     {
                         Add_Book();
                     }
-                    else if (Add_Del_option == 2)
+                    else if (Add_Del_option_Book == 2)
                     {
                         Delete_Book();
                     }
-                    else if (Add_Del_option == 3)
+                    else if (Add_Del_option_Book == 3)
                     {
                         Console.WriteLine("Thank you");
-                        close = false;
+                        run = false;
                         Welcome();
 
                     }
-                    else if(Add_Del_option == 4)
+                    else if (Add_Del_option_Book == 4)
                     {
                         Find_Book_Availability();
                     }
                     else
                     {
                         Console.WriteLine("Invalid option\nRetry !!!");
+
                     }
                 }
 
                 else if (Books_Newspapers_option == 2)
                 {
-                    Console.WriteLine("****  News papers Section  *****");
-                    Console.WriteLine("No NewsPapers are available to do Modifications");
+                   // Console.WriteLine("****  News papers Section  *****");
+                   // Console.WriteLine("No NewsPapers are available to do Modifications");
+                    Console.Clear();
+                    Console.WriteLine("\nMenu\n" +
+                    "Please choose your option\n" +
+                    "1)Add News Paper\n" +
+                    "2)Delete Delete\n" +
+                    "3)Close\n" +
+                    "4)Find News Paper Availabilty\n");
+
+                    Console.Write("Choose your option from menu :");
+
+                    int Add_Del_option_NewsPaper = int.Parse(Console.ReadLine());
+
+                    if (Add_Del_option_NewsPaper == 1)
+                    {
+                        Add_News_Paper();
+                    }
+                    else if (Add_Del_option_NewsPaper == 2)
+                    {
+                        Delete_News_Paper();
+                    }
+                    else if (Add_Del_option_NewsPaper == 3)
+                    {
+                        Console.WriteLine("Thank you");
+                        run = false;
+                        Welcome();
+                    }
+                    else if (Add_Del_option_NewsPaper == 4)
+                    {
+                        Find_Book_Availability();
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid option\nRetry !!!");
+
+                    }
+                    //Welcome();
                 }
             }
+        }
+        public static void Add_Book()
+        {
+            Book_Details book = new Book_Details();
+            Console.WriteLine("Book Id:{0}", book.bookId = bookList.Count + 1);
+            Console.Write("Book Name:");
+            book.bookName = Console.ReadLine();
+            Console.Write("Number of Books:");
+            book.Ref_x = book.bookCount = int.Parse(Console.ReadLine());
+            bookList.Add(book);
+        }
+        public static void Add_News_Paper()
+        {
+            News_Paper_Details Paper = new News_Paper_Details();
+            Console.WriteLine("News Paper Id:{0}", Paper.News_Paper_Id = newspaperList.Count + 1);
+            Console.Write("News Paper Name:");
+            Paper.News_Paper_Name = Console.ReadLine();
+            Console.Write("Number of News Papers:");
+            Paper.Ref_Y = Paper.News_Paper_Count = int.Parse(Console.ReadLine());
+            newspaperList.Add(Paper);
+        }
+        public static void Delete_Book()
+        {
+            Book_Details book = new Book_Details();
+            Console.Write("Enter Book id to be deleted : ");
+
+            int Del = int.Parse(Console.ReadLine());
+
+            if (bookList.Exists(x => x.bookId == Del))
+            {
+                bookList.RemoveAt(Del - 1);
+                Console.WriteLine("Book id - {0} has been deleted", Del);
+            }
+            else
+            {
+                Console.WriteLine("Invalid Book id");
+            }
+            bookList.Add(book);
+        }
+        public static void Delete_News_Paper()
+        {
+            News_Paper_Details paper = new News_Paper_Details();
+            Console.Write("Enter News Paper id to be deleted : ");
+
+            int Del = int.Parse(Console.ReadLine());
+
+            if (newspaperList.Exists(x => x.News_Paper_Id == Del))
+            {
+                newspaperList.RemoveAt(Del - 1);
+                Console.WriteLine("News Paper id - {0} has been deleted", Del);
+            }
+            else
+            {
+                Console.WriteLine("Invalid News Paper id");
+            }
+            newspaperList.Add(paper);
         }
         public static void Find_Book_Availability()
         {
@@ -153,37 +248,35 @@ namespace cs_con_LibManagementSys
                 Console.WriteLine("Book id {0} not found", find);
             }
         }
-        public static void Add_Book()
+        public static void Find_Newspaper_Availability()
         {
-            Book_Details book = new Book_Details();
-            Console.WriteLine("Book Id:{0}", book.bookId = bookList.Count + 1);
-            Console.Write("Book Name:");
-            book.bookName = Console.ReadLine();
-            Console.Write("Number of Books:");
-            book.Ref_x = book.bookCount = int.Parse(Console.ReadLine());
-            bookList.Add(book);
-        }
-        public static void Delete_Book()
-        {
-            Book_Details book = new Book_Details();
-            Console.Write("Enter Book id to be deleted : ");
+           // News_Paper_Details paper = new News_Paper_Details();
+            Console.Write("Search by News Paper id :");
+            int find = int.Parse(Console.ReadLine());
 
-            int Del = int.Parse(Console.ReadLine());
-
-            if (bookList.Exists(x => x.bookId == Del))
+            if (newspaperList.Exists(x => x.News_Paper_Id == find))
             {
-                bookList.RemoveAt(Del - 1);
-                Console.WriteLine("Book id - {0} has been deleted", Del);
+                foreach (News_Paper_Details searchId in newspaperList)
+                {
+                    if (searchId.News_Paper_Id == find)
+                    {
+                        Console.WriteLine("News Paper id :{0}\n" +
+                        "News Paper name :{1}\n" +
+                        "News Paper Count :{2}", searchId.News_Paper_Id, searchId.News_Paper_Name, searchId.News_Paper_Count);
+                    }
+                    else
+                    {
+                        Console.WriteLine("News Papers are Not Available ..!");
+                    }
+                }
             }
             else
             {
-                Console.WriteLine("Invalid Book id");
+                Console.WriteLine("News Paper id {0} not found", find);
             }
-            bookList.Add(book);
         }
         public static void Borrow_Book_From_Library()
         {
-            Book_Details book = new Book_Details();
             Borrow_Details borrow = new Borrow_Details();
             Console.WriteLine("User id : {0}", (borrow.userId = borrowList.Count + 1));
             Console.Write("Name :");
@@ -273,27 +366,11 @@ namespace cs_con_LibManagementSys
         public DateTime borrowDate;
         public int borrowCount;
     }
+    class News_Paper_Details
+    {
+        public int News_Paper_Id;
+        public string News_Paper_Name;
+        public int News_Paper_Count;
+        public int Ref_Y;
+    }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
