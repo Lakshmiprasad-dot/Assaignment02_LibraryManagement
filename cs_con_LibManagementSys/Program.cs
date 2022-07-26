@@ -45,7 +45,11 @@ namespace cs_con_LibManagementSys
                     "Please choose your option :\n" +
                     "1)Borrow book\n" +
                     "2)Return book\n" +
-                    "3)Close\n");
+                    "3)Find Book Availabilty\n"+
+                    "4)Borrow News Paper\n" +
+                    "5)Return News Paper\n" +
+                    "6)Find News Paper Availabilty\n" +
+                    "7)Close\n");
                     Console.Write("Choose your option from menu :");
 
                     int Borrow_Return = int.Parse(Console.ReadLine());
@@ -59,6 +63,22 @@ namespace cs_con_LibManagementSys
                         Return_Book_To_Library();
                     }
                     else if (Borrow_Return == 3)
+                    {
+                        Find_Book_Availability();
+                    }
+                    else if (Borrow_Return == 4)
+                    {
+                        
+                    }
+                    else if (Borrow_Return == 5)
+                    {
+
+                    }
+                    else if (Borrow_Return == 6)
+                    {
+                        Find_Newspaper_Availability();
+                    }
+                    else if (Borrow_Return == 7)
                     {
                         Console.WriteLine("Thank you");
                         close1 = false;
@@ -89,8 +109,7 @@ namespace cs_con_LibManagementSys
                     "Please choose your option\n" +
                     "1)Add book\n" +
                     "2)Delete book\n" +
-                    "3)Close\n" +
-                    "4)Find Book Availabilty\n");
+                    "3)Close\n");
 
                     Console.Write("Choose your option from menu :");
 
@@ -111,10 +130,6 @@ namespace cs_con_LibManagementSys
                         Welcome();
 
                     }
-                    else if (Add_Del_option_Book == 4)
-                    {
-                        Find_Book_Availability();
-                    }
                     else
                     {
                         Console.WriteLine("Invalid option\nRetry !!!");
@@ -130,7 +145,7 @@ namespace cs_con_LibManagementSys
                     Console.WriteLine("\nMenu\n" +
                     "Please choose your option\n" +
                     "1)Add News Paper\n" +
-                    "2)Delete Delete\n" +
+                    "2)Delete News Paper\n" +
                     "3)Close\n" +
                     "4)Find News Paper Availabilty\n");
 
@@ -154,14 +169,13 @@ namespace cs_con_LibManagementSys
                     }
                     else if (Add_Del_option_NewsPaper == 4)
                     {
-                        Find_Book_Availability();
+                        Find_Newspaper_Availability();
                     }
                     else
                     {
                         Console.WriteLine("Invalid option\nRetry !!!");
 
                     }
-                    //Welcome();
                 }
             }
         }
@@ -279,7 +293,7 @@ namespace cs_con_LibManagementSys
         {
             Borrow_Details borrow = new Borrow_Details();
             Console.WriteLine("User id : {0}", (borrow.userId = borrowList.Count + 1));
-            Console.Write("Name :");
+            Console.Write("Borrower Name :");
 
             borrow.userName = Console.ReadLine();
 
@@ -374,3 +388,4 @@ namespace cs_con_LibManagementSys
         public int Ref_Y;
     }
 }
+
