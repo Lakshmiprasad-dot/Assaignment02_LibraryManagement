@@ -146,8 +146,7 @@ namespace cs_con_LibManagementSys
                     "Please choose your option\n\n" +
                     "Enter : ( 1 ) Add News Paper\n" +
                     "Enter : ( 2 ) Delete News Paper\n" +
-                    "Enter : ( 3 ) Close\n" +
-                    "Enter : ( 4 ) Find News Paper Availabilty\n");
+                    "Enter : ( 3 ) Close\n");
 
                     Console.Write("Choose your option from menu :");
 
@@ -166,10 +165,6 @@ namespace cs_con_LibManagementSys
                         Console.WriteLine("Thank you");
                         run = false;
                         Welcome();
-                    }
-                    else if (Add_Del_option_NewsPaper == 4)
-                    {
-                        Find_Newspaper_Availability();
                     }
                     else
                     {
@@ -327,6 +322,7 @@ namespace cs_con_LibManagementSys
                         if (searchId.bookId == borrow.borrowBook_newspaperId)
                         {
                             searchId.bookCount = searchId.bookCount - borrow.borrowCount;
+                            Console.WriteLine("Books Borrowed Successfully");
                             break;
                         }
                     }
@@ -369,19 +365,20 @@ namespace cs_con_LibManagementSys
                         if (searchId.News_Paper_Id == borrow.borrowBook_newspaperId)
                         {
                             searchId.News_Paper_Count = searchId.News_Paper_Count - borrow.borrowCount;
+                            Console.WriteLine("News Papers Borrowed Successfully");
                             break;
                         }
                     }
                     else
                     {
-                        Console.WriteLine("Only {0} books are found", searchId.News_Paper_Count);
+                        Console.WriteLine("Only {0} news papers are found", searchId.News_Paper_Count);
                         break;
                     }
                 }
             }
             else
             {
-                Console.WriteLine("Book id {0} not found", borrow.borrowBook_newspaperId);
+                Console.WriteLine("News Paper id {0} not found", borrow.borrowBook_newspaperId);
             }
             borrowList.Add(borrow);
             Console.ReadKey();
@@ -407,6 +404,7 @@ namespace cs_con_LibManagementSys
                         if (addReturnBookCount.bookId == returnId)
                         {
                             addReturnBookCount.bookCount = addReturnBookCount.bookCount + returnCount;
+                            Console.WriteLine("Books Returned Successfully");
                             break;
                         }
                     }
@@ -444,6 +442,7 @@ namespace cs_con_LibManagementSys
                         if (addReturnNewspaperCount.News_Paper_Id == returnId)
                         {
                             addReturnNewspaperCount.News_Paper_Count = addReturnNewspaperCount.News_Paper_Count + returnCount;
+                            Console.WriteLine("News Papers Returned Successfully");
                             break;
                         }
                     }
