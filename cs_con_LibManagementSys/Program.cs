@@ -11,6 +11,7 @@ namespace cs_con_LibManagementSys
         static News_Paper_Details paper = new News_Paper_Details();
         static Book_Details book = new Book_Details();
         static Borrow_Details borrow = new Borrow_Details();
+
         static void Main(string[] args)
         {
             Console.WriteLine("**** Welcome to Library Management Sysytem ******** ");
@@ -33,62 +34,17 @@ namespace cs_con_LibManagementSys
                   "Enter : ( 1 ) Books\n" +
                   "Enter : ( 2 ) NewsPapers\n");
                 Console.Write("Enter your option :");
-                Book();
+                Librarian();
             }
             else if (option_person == 2)
             {
                 Console.Clear();
-                bool check = true;
-                while (check)
-                {
-                    Console.WriteLine("\n ** Borrower Menu ** \n\n" +
-                    "Please choose your option :\n\n" +
-                    "Enter : ( 1 ) Borrow book\n" +
-                    "Enter : ( 2 ) Return book\n" +
-                    "Enter : ( 3 ) Find Book Availabilty\n" +
-                    "Enter : ( 4 ) Borrow News Paper\n" +
-                    "Enter : ( 5 ) Return News Paper\n" +
-                    "Enter : ( 6 ) Find News Paper Availabilty\n" +
-                    "Enter : ( 7 ) Close\n\n");
-                    Console.Write("Choose your option from Borrower Menu :");
-
-                    int Borrow_option = int.Parse(Console.ReadLine());
-
-                    if (Borrow_option == 1)
-                    {
-                        Borrow_Book_From_Library();
-                    }
-                    else if (Borrow_option == 2)
-                    {
-                        Return_Book_To_Library();
-                    }
-                    else if (Borrow_option == 3)
-                    {
-                        Find_Book_Availability();
-                    }
-                    else if (Borrow_option == 4)
-                    {
-                        Borrow_Newspaper_From_Library();
-                    }
-                    else if (Borrow_option == 5)
-                    {
-                        Return_Newspaper_To_Library();
-                    }
-                    else if (Borrow_option == 6)
-                    {
-                        Find_Newspaper_Availability();
-                    }
-                    else if (Borrow_option == 7)
-                    {
-                        Console.WriteLine("Thank you");
-                        check = false;
-                        Welcome();
-                    }
-                    else
-                    {
-                        Console.WriteLine("Invalid option\nRetry !!!");
-                    }
-                }
+                Console.WriteLine("\nWelcome Mrs / Ms Borrower\n" +
+                  "Please choose your option  : \n\n" +
+                  "Enter : ( 1 ) Books\n" +
+                  "Enter : ( 2 ) NewsPapers\n");
+                Console.Write("Enter your option :");
+                Borrower();
             }
             else if (option_person == 3)
             {
@@ -96,7 +52,26 @@ namespace cs_con_LibManagementSys
 
             }
         }
-        public static void Book()
+        
+        public static void Show_Book_List()
+        {
+            Console.WriteLine("Book id " + "    Book name " + "  Book Count");
+            foreach (Book_Details find_Id in bookList)
+            {
+                Console.WriteLine("  {0}   " + "        {1}     " + "          {2}   ", find_Id.bookId, find_Id.bookName, find_Id.bookCount);
+            }
+           
+        }
+        public static void Show_News_Paper_List()
+        {
+            Console.WriteLine("News Paper id " + "    News Paper name " + "  News Papers Count");
+            foreach (News_Paper_Details find_Id in newspaperList)
+            {
+
+                Console.WriteLine("  {0}   " + "          {1}     " + "             {2}   ", find_Id.News_Paper_Id, find_Id.News_Paper_Name, find_Id.News_Paper_Count);
+            }
+        }
+        public static void Librarian()
         {
             int Books_Newspapers_option = int.Parse(Console.ReadLine());
             bool run = true;
@@ -161,6 +136,103 @@ namespace cs_con_LibManagementSys
                         Delete_News_Paper();
                     }
                     else if (Add_Del_option_NewsPaper == 3)
+                    {
+                        Console.WriteLine("Thank you");
+                        run = false;
+                        Welcome();
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid option\nRetry !!!");
+
+                    }
+                }
+            }
+        }
+        public static void Borrower()
+        {
+            int Books_Newspapers_option = int.Parse(Console.ReadLine());
+            bool run = true;
+            while (run)
+            {
+                if (Books_Newspapers_option == 1)
+                {
+                    Console.Clear();
+                    Console.WriteLine("\n **  Borrower Book Menu  **\n" +
+                    "Please choose your option\n\n" +
+                    "Enter : ( 1 ) Borrow Book\n" +
+                    "Enter : ( 2 ) Return Book\n" +
+                    "Enter : ( 3 ) Find Book Availabilty \n" +
+                    "Enter : ( 4 ) Show Book List \n" +
+                    "Enter : ( 5 ) Close\n");
+
+                    Console.Write("Choose your option from Borrower Menu :");
+
+                    int Add_Del_option_Book = int.Parse(Console.ReadLine());
+
+                    if (Add_Del_option_Book == 1)
+                    {
+                        Borrow_Book_From_Library();
+                    }
+                    else if (Add_Del_option_Book == 2)
+                    {
+                        Return_Book_To_Library();
+                    }
+                    else if (Add_Del_option_Book == 3)
+                    {
+                        Find_Book_Availability();
+                    }
+                    else if (Add_Del_option_Book == 4)
+                    {
+                        Show_Book_List();
+                    }
+                    else if (Add_Del_option_Book == 5)
+                    {
+                        Console.WriteLine("Thank you");
+                        run = false;
+                        Welcome();
+
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid option\nRetry !!!");
+
+                    }
+                }
+
+                else if (Books_Newspapers_option == 2)
+                {
+
+                    Console.Clear();
+                    Console.WriteLine("\nBorrower News Paper Menu\n" +
+                    "Please choose your option\n\n" +
+                    "Enter : ( 1 ) Borrow News Paper\n" +
+                    "Enter : ( 2 ) Return News Paper\n" +
+                    "Enter : ( 3 ) Find News Paper Availabilty\n" +
+                    "Enter : ( 4 ) Show News Paper List\n" +
+                    "Enter : ( 5 ) Close\n");
+
+                    Console.Write("Choose your option from menu :");
+
+                    int Add_Del_option_NewsPaper = int.Parse(Console.ReadLine());
+
+                    if (Add_Del_option_NewsPaper == 1)
+                    {
+                        Borrow_Newspaper_From_Library();
+                    }
+                    else if (Add_Del_option_NewsPaper == 2)
+                    {
+                        Return_Newspaper_To_Library();
+                    }
+                    else if (Add_Del_option_NewsPaper == 3)
+                    {
+                        Find_Newspaper_Availability();
+                    }
+                    else if (Add_Del_option_NewsPaper == 4)
+                    {
+                        Show_News_Paper_List();
+                    }
+                    else if (Add_Del_option_NewsPaper == 5)
                     {
                         Console.WriteLine("Thank you");
                         run = false;
@@ -303,9 +375,7 @@ namespace cs_con_LibManagementSys
             Borrow_Details borrow = new Borrow_Details();
             Console.WriteLine("User id : {0}", (borrow.userId = borrowList.Count + 1));
             Console.Write("Borrower Name :");
-
             borrow.userName = Console.ReadLine();
-
             Console.Write("Book id :");
             borrow.borrowBook_newspaperId = int.Parse(Console.ReadLine());
             Console.Write("Number of Books : ");
@@ -460,6 +530,7 @@ namespace cs_con_LibManagementSys
             Console.ReadKey();
             Console.Clear();
         }
+        
     }
     class Book_Details
     {
