@@ -205,12 +205,12 @@ namespace cs_con_LibManagementSys
             Book_Details book = new Book_Details();
             Console.Write("Enter Book id to be deleted : ");
 
-            int Del = int.Parse(Console.ReadLine());
+            int Delete = int.Parse(Console.ReadLine());
 
-            if (bookList.Exists(x => x.bookId == Del))
+            if (bookList.Exists(value => value.bookId == Delete))
             {
-                bookList.RemoveAt(Del - 1);
-                Console.WriteLine("Book id - {0} has been deleted", Del);
+                bookList.RemoveAt(Delete - 1);
+                Console.WriteLine("Book id - {0} has been deleted", Delete);
             }
             else
             {
@@ -225,12 +225,12 @@ namespace cs_con_LibManagementSys
             News_Paper_Details paper = new News_Paper_Details();
             Console.Write("Enter News Paper id to be deleted : ");
 
-            int Del = int.Parse(Console.ReadLine());
+            int Delete = int.Parse(Console.ReadLine());
 
-            if (newspaperList.Exists(x => x.News_Paper_Id == Del))
+            if (newspaperList.Exists(val => val.News_Paper_Id == Delete))
             {
-                newspaperList.RemoveAt(Del - 1);
-                Console.WriteLine("News Paper id - {0} has been deleted", Del);
+                newspaperList.RemoveAt(Delete - 1);
+                Console.WriteLine("News Paper id - {0} has been deleted", Delete);
             }
             else
             {
@@ -244,17 +244,17 @@ namespace cs_con_LibManagementSys
         {
             Book_Details book = new Book_Details();
             Console.Write("Search by BOOK id :");
-            int find = int.Parse(Console.ReadLine());
+            int search = int.Parse(Console.ReadLine());
 
-            if (bookList.Exists(x => x.bookId == find))
+            if (bookList.Exists(val => val.bookId == search))
             {
-                foreach (Book_Details searchId in bookList)
+                foreach (Book_Details find_Id in bookList)
                 {
-                    if (searchId.bookId == find)
+                    if (find_Id.bookId == search)
                     {
                         Console.WriteLine("Book id :{0}\n" +
                         "Book name :{1}\n" +
-                        "Book Count :{2}", searchId.bookId, searchId.bookName, searchId.bookCount);
+                        "Book Count :{2}", find_Id.bookId, find_Id.bookName, find_Id.bookCount);
                     }
                     else
                     {
@@ -264,7 +264,7 @@ namespace cs_con_LibManagementSys
             }
             else
             {
-                Console.WriteLine("Book id {0} not found", find);
+                Console.WriteLine("Book id {0} not found", search);
             }
             Console.ReadKey();
             Console.Clear();
@@ -273,17 +273,17 @@ namespace cs_con_LibManagementSys
         {
            // News_Paper_Details paper = new News_Paper_Details();
             Console.Write("Search by News Paper id :");
-            int find = int.Parse(Console.ReadLine());
+            int search = int.Parse(Console.ReadLine());
 
-            if (newspaperList.Exists(x => x.News_Paper_Id == find))
+            if (newspaperList.Exists(val => val.News_Paper_Id == search))
             {
-                foreach (News_Paper_Details searchId in newspaperList)
+                foreach (News_Paper_Details find_Id in newspaperList)
                 {
-                    if (searchId.News_Paper_Id == find)
+                    if (find_Id.News_Paper_Id == search)
                     {
                         Console.WriteLine("News Paper id :{0}\n" +
                         "News Paper name :{1}\n" +
-                        "News Paper Count :{2}", searchId.News_Paper_Id, searchId.News_Paper_Name, searchId.News_Paper_Count);
+                        "News Paper Count :{2}", find_Id.News_Paper_Id, find_Id.News_Paper_Name, find_Id.News_Paper_Count);
                     }
                     else
                     {
@@ -293,7 +293,7 @@ namespace cs_con_LibManagementSys
             }
             else
             {
-                Console.WriteLine("News Paper id {0} not found", find);
+                Console.WriteLine("News Paper id {0} not found", search);
             }
             Console.ReadKey();
             Console.Clear();
@@ -313,22 +313,22 @@ namespace cs_con_LibManagementSys
             borrow.borrowDate = DateTime.Now;
             Console.WriteLine("Date - {0} ", borrow.borrowDate.ToShortDateString());
 
-            if (bookList.Exists(x => x.bookId == borrow.borrowBook_newspaperId))
+            if (bookList.Exists(val => val.bookId == borrow.borrowBook_newspaperId))
             {
-                foreach (Book_Details searchId in bookList)
+                foreach (Book_Details find_Id in bookList)
                 {
-                    if (searchId.bookCount >= searchId.bookCount - borrow.borrowCount && searchId.bookCount - borrow.borrowCount >= 0)
+                    if (find_Id.bookCount >= find_Id.bookCount - borrow.borrowCount && find_Id.bookCount - borrow.borrowCount >= 0)
                     {
-                        if (searchId.bookId == borrow.borrowBook_newspaperId)
+                        if (find_Id.bookId == borrow.borrowBook_newspaperId)
                         {
-                            searchId.bookCount = searchId.bookCount - borrow.borrowCount;
+                            find_Id.bookCount = find_Id.bookCount - borrow.borrowCount;
                             Console.WriteLine("Books Borrowed Successfully");
                             break;
                         }
                     }
                     else
                     {
-                        Console.WriteLine("Only {0} books are found", searchId.bookCount);
+                        Console.WriteLine("Only {0} books are found", find_Id.bookCount);
                         break;
                     }
                 }
@@ -356,22 +356,22 @@ namespace cs_con_LibManagementSys
             borrow.borrowDate = DateTime.Now;
             Console.WriteLine("Date - {0} ", borrow.borrowDate.ToShortDateString());
 
-            if (newspaperList.Exists(x => x.News_Paper_Id == borrow.borrowBook_newspaperId))
+            if (newspaperList.Exists(val => val.News_Paper_Id == borrow.borrowBook_newspaperId))
             {
-                foreach (News_Paper_Details searchId in newspaperList)
+                foreach (News_Paper_Details find_Id in newspaperList)
                 {
-                    if (searchId.News_Paper_Count >= searchId.News_Paper_Count - borrow.borrowCount && searchId.News_Paper_Count - borrow.borrowCount >= 0)
+                    if (find_Id.News_Paper_Count >= find_Id.News_Paper_Count - borrow.borrowCount && find_Id.News_Paper_Count - borrow.borrowCount >= 0)
                     {
-                        if (searchId.News_Paper_Id == borrow.borrowBook_newspaperId)
+                        if (find_Id.News_Paper_Id == borrow.borrowBook_newspaperId)
                         {
-                            searchId.News_Paper_Count = searchId.News_Paper_Count - borrow.borrowCount;
+                            find_Id.News_Paper_Count = find_Id.News_Paper_Count - borrow.borrowCount;
                             Console.WriteLine("News Papers Borrowed Successfully");
                             break;
                         }
                     }
                     else
                     {
-                        Console.WriteLine("Only {0} news papers are found", searchId.News_Paper_Count);
+                        Console.WriteLine("Only {0} news papers are found", find_Id.News_Paper_Count);
                         break;
                     }
                 }
@@ -395,7 +395,7 @@ namespace cs_con_LibManagementSys
             Console.Write("Number of Books:");
             int returnCount = int.Parse(Console.ReadLine());
 
-            if (bookList.Exists(y => y.bookId == returnId))
+            if (bookList.Exists(val => val.bookId == returnId))
             {
                 foreach (Book_Details addReturnBookCount in bookList)
                 {
