@@ -59,7 +59,8 @@ namespace cs_con_LibManagementSys
             foreach (Book_Details find_Id in bookList)
             {
                 Console.WriteLine("  {0}   " + "        {1}     " + "          {2}   ", find_Id.bookId, find_Id.bookName, find_Id.bookCount);
-            } 
+            }
+            Console.ReadKey();
         }
         public static void Show_News_Paper_List()
         {
@@ -69,6 +70,7 @@ namespace cs_con_LibManagementSys
 
                 Console.WriteLine("  {0}   " + "          {1}     " + "             {2}   ", find_Id.News_Paper_Id, find_Id.News_Paper_Name, find_Id.News_Paper_Count);
             }
+            Console.ReadKey();
         }
         public static void Librarian()
         {
