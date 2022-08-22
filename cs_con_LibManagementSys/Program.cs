@@ -5,8 +5,8 @@ namespace cs_con_LibManagementSys
 {
     class Program
     {
-        static List<Book_Details> bookList = new List<Book_Details>();
-        static List<News_Paper_Details> newspaperList = new List<News_Paper_Details>();
+        private static readonly List<Book_Details> bookList = new List<Book_Details>();
+        private static readonly List<News_Paper_Details> newspaperList = new List<News_Paper_Details>();
         static List<Borrow_Details> borrowList = new List<Borrow_Details>();
         static News_Paper_Details paper = new News_Paper_Details();
         static Book_Details book = new Book_Details();
@@ -59,8 +59,7 @@ namespace cs_con_LibManagementSys
             foreach (Book_Details find_Id in bookList)
             {
                 Console.WriteLine("  {0}   " + "        {1}     " + "          {2}   ", find_Id.bookId, find_Id.bookName, find_Id.bookCount);
-            }
-           
+            } 
         }
         public static void Show_News_Paper_List()
         {
@@ -84,7 +83,8 @@ namespace cs_con_LibManagementSys
                     "Please choose your option\n\n" +
                     "Enter : ( 1 ) Add book\n" +
                     "Enter : ( 2 ) Delete book\n" +
-                    "Enter : ( 3 ) Close\n");
+                    "Enter : ( 3 ) Show Book List\n" +
+                    "Enter : ( 4 ) Close\n");
 
                     Console.Write("Choose your option from Librarian Menu :");
 
@@ -99,6 +99,10 @@ namespace cs_con_LibManagementSys
                         Delete_Book();
                     }
                     else if (Add_Del_option_Book == 3)
+                    {
+                        Show_Book_List();
+                    }
+                    else if (Add_Del_option_Book == 4)
                     {
                         Console.WriteLine("Thank you");
                         run = false;
@@ -121,7 +125,8 @@ namespace cs_con_LibManagementSys
                     "Please choose your option\n\n" +
                     "Enter : ( 1 ) Add News Paper\n" +
                     "Enter : ( 2 ) Delete News Paper\n" +
-                    "Enter : ( 3 ) Close\n");
+                    "Enter : ( 3 ) Show News Paper List\n" +
+                    "Enter : ( 4 ) Close\n");
 
                     Console.Write("Choose your option from menu :");
 
@@ -135,7 +140,11 @@ namespace cs_con_LibManagementSys
                     {
                         Delete_News_Paper();
                     }
-                    else if (Add_Del_option_NewsPaper == 3)
+                    else if (Add_Del_option_NewsPaper == 2)
+                    {
+                        Show_News_Paper_List();
+                    }
+                    else if (Add_Del_option_NewsPaper == 4)
                     {
                         Console.WriteLine("Thank you");
                         run = false;
