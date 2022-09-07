@@ -12,6 +12,7 @@ namespace cs_con_LibManagementSys
         static Book_Details book = new Book_Details();
         static Borrow_Details borrow = new Borrow_Details();
 
+                                                     // Main Method
         static void Main(string[] args)
         {
             Console.WriteLine("**** Welcome to Library Management Sysytem ******** ");
@@ -52,7 +53,8 @@ namespace cs_con_LibManagementSys
 
             }
         }
-        
+                                                        //This method is used to show the book list
+                                                        
         public static void Show_Book_List()
         {
             Console.WriteLine("Book id " + "    Book name " + "  Book Count");
@@ -62,6 +64,8 @@ namespace cs_con_LibManagementSys
             }
             Console.ReadKey();
         }
+
+                                                         //This method is used to show the news papers list
         public static void Show_News_Paper_List()
         {
             Console.WriteLine("News Paper id " + "    News Paper name " + "  News Papers Count");
@@ -72,6 +76,7 @@ namespace cs_con_LibManagementSys
             }
             Console.ReadKey();
         }
+                                                        //This is for librarian
         public static void Librarian()
         {
             int Books_Newspapers_option = int.Parse(Console.ReadLine());
@@ -257,6 +262,8 @@ namespace cs_con_LibManagementSys
                 }
             }
         }
+
+                                            // This method will call by librarian to add some books
         public static void Add_Book()
         {
             Book_Details book = new Book_Details();
@@ -270,6 +277,7 @@ namespace cs_con_LibManagementSys
             Console.ReadKey();
             Console.Clear();
         }
+                                            // This method will call by librarian to add some news papers
         public static void Add_News_Paper()
         {
             News_Paper_Details Paper = new News_Paper_Details();
@@ -323,6 +331,7 @@ namespace cs_con_LibManagementSys
             Console.ReadKey();
             Console.Clear();
         }
+                                                        //By this method we can check book availability by book id
         public static void Find_Book_Availability()
         {
             Book_Details book = new Book_Details();
@@ -381,6 +390,7 @@ namespace cs_con_LibManagementSys
             Console.ReadKey();
             Console.Clear();
         }
+                                                        // Borrower can borrow the book from library 
         public static void Borrow_Book_From_Library()
         {
             Borrow_Details borrow = new Borrow_Details();
@@ -543,6 +553,7 @@ namespace cs_con_LibManagementSys
         }
         
     }
+    // Different classes for 
     class Book_Details
     {
         public int bookId;
